@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #0a0e14; }
+  * { box-sizing: border-box; }
+  a { color: #38bdf8; }
+  a:hover { color: #7dd3fc; }
+  [data-card]:hover { background: rgba(230,237,243,0.055); border-color: rgba(230,237,243,0.16); }
+  [data-card]:hover [data-dot] { transform: translateX(-50%) scale(1.3); }
+  @media (max-width: 720px) {
+    [data-card] { padding: 15px 16px 16px !important; }
+    [data-phase-row] { padding-left: 30px !important; }
+  }
+</style>
+</helmet>
+<div style="background: #0a0e14; color: #e6edf3; font-family: 'IBM Plex Sans', system-ui, sans-serif; min-height: 100vh; overflow-x: hidden;">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 26px 5vw; max-width: 1360px; margin: 0 auto;">
+    <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; color: #e6edf3;">projecttrack<span style="color: #38bdf8;">.dev</span></span>
+    <nav style="display: flex; align-items: center; gap: 28px; font-size: 14px;">
+      <a href="#roadmap" style="color: #8b949e; text-decoration: none;" style-hover="color: #e6edf3;">The track</a>
+      <a href="#roadmap" style="color: #8b949e; text-decoration: none;" style-hover="color: #e6edf3;">Phases</a>
+    </nav>
+  </header>
+
+  <section style="max-width: 1000px; margin: 0 auto; padding: 88px 5vw 104px; text-align: center; position: relative;">
+    <div style="position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 760px; height: 420px; background: radial-gradient(ellipse at center, rgba(56,189,248,0.13), rgba(56,189,248,0) 68%); pointer-events: none;"></div>
+    <p style="position: relative; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #38bdf8; margin: 0 0 28px;">12 projects &middot; 5 phases &middot; one order</p>
+    <h1 style="position: relative; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(38px, 6.2vw, 78px); line-height: 1.04; letter-spacing: -0.03em; margin: 0; text-wrap: balance; color: #f4f8fb;">Want real data science, AI, and ML projects on your CV?</h1>
+    <p style="position: relative; max-width: 620px; margin: 30px auto 0; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: #8b949e; text-wrap: pretty;">Build 12 projects in order, from your first predictive model to an autonomous research agent. Each one teaches the skill the next one needs, and each one is ready to show.</p>
+    <a href="#roadmap" style="position: relative; display: inline-flex; align-items: center; gap: 10px; margin-top: 44px; padding: 16px 30px; border-radius: 999px; background: #38bdf8; color: #06131d; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: -0.01em; text-decoration: none; box-shadow: 0 0 40px rgba(56,189,248,0.3);" style-hover="background: #7dd3fc; box-shadow: 0 0 56px rgba(56,189,248,0.45); color: #06131d;">Start the track <span style="font-family: 'IBM Plex Mono', monospace;">&rarr;</span></a>
+  </section>
+
+  <section id="roadmap" style="max-width: 1240px; margin: 0 auto; padding: 0 5vw 72px;">
+    <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; border-top: 1px solid rgba(230,237,243,0.08); padding: 30px 0 32px;">
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; margin: 0; color: #f4f8fb;">The roadmap</h2>
+      <p style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #8b949e; margin: 0;">Top to bottom, project 01 first</p>
+    </div>
+
+    <div data-phase="foundations" style="position: relative; border-left: 2px solid #60a5fa; padding-bottom: 18px;">
+      <div style="display: flex; align-items: baseline; gap: 12px; padding-left: 26px; margin-bottom: 10px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #60a5fa;">Phase 1</span>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 19px; letter-spacing: -0.015em; color: #60a5fa;">Foundations</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <a data-phase-row="true" href="projects/first-predictive-model.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(96,165,250,0.14), 0 0 12px 3px rgba(96,165,250,0.7), 0 0 30px 8px rgba(96,165,250,0.3); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(230,237,243,0.09); border-radius: 12px; background: rgba(230,237,243,0.025); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #60a5fa;">01</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">First Predictive Model</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Train and score a regression model end to end on a small tabular dataset.</span>
+          </span>
+        </a>
+        <a data-phase-row="true" href="projects/linear-algebra-from-scratch.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(96,165,250,0.14), 0 0 12px 3px rgba(96,165,250,0.7), 0 0 30px 8px rgba(96,165,250,0.3); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(230,237,243,0.09); border-radius: 12px; background: rgba(230,237,243,0.025); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #60a5fa;">02</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">Linear Algebra from Scratch</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Write matrix operations, least squares, and PCA in NumPy without a library solver.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div data-phase="core-ml" style="position: relative; border-left: 2px solid #22d3ee; padding-bottom: 18px;">
+      <div style="display: flex; align-items: baseline; gap: 12px; padding-left: 26px; margin-bottom: 10px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #22d3ee;">Phase 2</span>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 19px; letter-spacing: -0.015em; color: #22d3ee;">Core ML</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <a data-phase-row="true" href="projects/text-classification.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(34,211,238,0.14), 0 0 12px 3px rgba(34,211,238,0.7), 0 0 30px 8px rgba(34,211,238,0.3); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(230,237,243,0.09); border-radius: 12px; background: rgba(230,237,243,0.025); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #22d3ee;">03</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">Text Classification</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Turn raw text into features and compare a linear baseline against a neural model.</span>
+          </span>
+        </a>
+        <a data-phase-row="true" href="projects/clustering-with-eigenvectors.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(34,211,238,0.14), 0 0 12px 3px rgba(34,211,238,0.7), 0 0 30px 8px rgba(34,211,238,0.3); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(230,237,243,0.09); border-radius: 12px; background: rgba(230,237,243,0.025); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #22d3ee;">04</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">Clustering with Eigenvectors</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Build spectral clustering on a graph and check it against k-means.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div data-phase="vision" style="position: relative; border-left: 2px solid #34d399; padding-bottom: 18px;">
+      <div style="display: flex; align-items: baseline; gap: 12px; padding-left: 26px; margin-bottom: 10px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #34d399;">Phase 3</span>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 19px; letter-spacing: -0.015em; color: #34d399;">Vision</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <a data-phase-row="true" href="projects/image-classification.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(52,211,153,0.14), 0 0 12px 3px rgba(52,211,153,0.7), 0 0 30px 8px rgba(52,211,153,0.3); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(230,237,243,0.09); border-radius: 12px; background: rgba(230,237,243,0.025); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #34d399;">05</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">Image Classification</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Train a small CNN, then fine-tune a pretrained backbone and compare the two.</span>
+          </span>
+        </a>
+        <a data-phase-row="true" href="projects/scanned-document-classifier.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(52,211,153,0.14), 0 0 12px 3px rgba(52,211,153,0.7), 0 0 30px 8px rgba(52,211,153,0.3); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(230,237,243,0.09); border-radius: 12px; background: rgba(230,237,243,0.025); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #34d399;">06</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">Scanned Document Classifier</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Read scanned pages with OCR and sort them by layout and text together.</span>
+          </span>
+        </a>
+        <a data-phase-row="true" href="projects/facial-emotion-recognition.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(52,211,153,0.14), 0 0 12px 3px rgba(52,211,153,0.7), 0 0 30px 8px rgba(52,211,153,0.3); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(230,237,243,0.09); border-radius: 12px; background: rgba(230,237,243,0.025); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #34d399;">07</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">Facial Emotion Recognition</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Detect faces, classify expressions, and handle a class-imbalanced dataset.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div data-phase="finance" style="position: relative; border-left: 2px solid #fbbf24; padding-bottom: 18px;">
+      <div style="display: flex; align-items: baseline; gap: 12px; padding-left: 26px; margin-bottom: 10px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #fbbf24;">Phase 4</span>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 19px; letter-spacing: -0.015em; color: #fbbf24;">Finance</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <a data-phase-row="true" href="projects/market-time-series-forecasting.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(251,191,36,0.14), 0 0 12px 3px rgba(251,191,36,0.7), 0 0 30px 8px rgba(251,191,36,0.3); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(230,237,243,0.09); border-radius: 12px; background: rgba(230,237,243,0.025); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #fbbf24;">08</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">Market Time-Series Forecasting</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Backtest price forecasts with walk-forward validation instead of a random split.</span>
+          </span>
+        </a>
+        <a data-phase-row="true" href="projects/credit-default-prediction.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(251,191,36,0.14), 0 0 12px 3px rgba(251,191,36,0.7), 0 0 30px 8px rgba(251,191,36,0.3); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(230,237,243,0.09); border-radius: 12px; background: rgba(230,237,243,0.025); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #fbbf24;">09</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">Credit Default Prediction</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Score risk with gradient boosting and explain each decision with SHAP values.</span>
+          </span>
+        </a>
+        <a data-phase-row="true" href="projects/financial-data-pipeline.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(251,191,36,0.14), 0 0 12px 3px rgba(251,191,36,0.7), 0 0 30px 8px rgba(251,191,36,0.3); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(230,237,243,0.09); border-radius: 12px; background: rgba(230,237,243,0.025); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #fbbf24;">10</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">Financial Data Pipeline</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Schedule ingestion, validation, and storage so the data refreshes on its own.</span>
+          </span>
+        </a>
+        <a data-phase-row="true" href="projects/financial-document-assistant.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 13px; height: 13px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 4px rgba(251,191,36,0.14), 0 0 12px 3px rgba(251,191,36,0.7), 0 0 30px 8px rgba(251,191,36,0.3); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(230,237,243,0.09); border-radius: 12px; background: rgba(230,237,243,0.025); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #fbbf24;">11</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">Financial Document Assistant</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Answer questions over filings with retrieval, and cite the source passage.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div data-phase="capstone" style="position: relative; border-left: 2px solid #a78bfa;">
+      <div style="display: flex; align-items: baseline; gap: 12px; padding-left: 26px; margin-bottom: 10px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #a78bfa;">Phase 5</span>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 19px; letter-spacing: -0.015em; color: #a78bfa;">Capstone</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <a data-phase-row="true" href="projects/autonomous-research-agent.html" style="position: relative; display: block; padding-left: 40px; text-decoration: none;">
+          <span data-dot="true" style="position: absolute; left: -1px; top: 26px; width: 15px; height: 15px; border-radius: 50%; background: #ffffff; transform: translateX(-50%); box-shadow: 0 0 0 5px rgba(167,139,250,0.16), 0 0 16px 4px rgba(167,139,250,0.75), 0 0 40px 11px rgba(167,139,250,0.32); transition: transform 180ms ease;"></span>
+          <span data-card="true" style="display: block; padding: 18px 26px 19px; border: 1px solid rgba(167,139,250,0.22); border-radius: 12px; background: rgba(167,139,250,0.05); transition: background 180ms ease, border-color 180ms ease;">
+            <span style="display: flex; align-items: baseline; gap: 12px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #a78bfa;">12</span>
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 20px; letter-spacing: -0.015em; color: #f4f8fb;">Autonomous Research Agent</span>
+            </span>
+            <span style="display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; color: #8b949e;">Give a model tools, memory, and a plan loop, then have it write up its findings.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="max-width: 1360px; margin: 0 auto; padding: 34px 5vw 60px; border-top: 1px solid rgba(230,237,243,0.08); display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center;">
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #8b949e;">projecttrack.dev</span>
+    <a href="projects/first-predictive-model.html" style="font-size: 14px; color: #38bdf8; text-decoration: none;" style-hover="color: #7dd3fc;">Begin with project 01 &rarr;</a>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

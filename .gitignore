@@ -1,0 +1,18 @@
+claude-chain.pem
+
+# dependencies
+node_modules/
+
+# astro build output and cache
+dist/
+.astro/
+
+# environment variables
+.env
+.env.production
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/
+

@@ -1,0 +1,189 @@
+# Project Brief: Data Science Project Track
+
+This document is the single source of truth for building this site. Read it fully before writing any code. A design reference (exported from Claude Design) lives in `design-reference/` and shows the intended look for the home page.
+
+---
+
+## 1. What this site is
+
+A static website that gives data science students an ordered track of real projects to build for their CV, plus guidance most students never get. It is built by a graduate of a UK data science degree who found the coursework strong on theory but thin on applied practice, and closed that gap with self-driven projects. The site shares that map with the next cohort.
+
+**Audience:** students in a specific UK data science degree program (Bahrain-based). The site is shared with them directly by link, so it does not need to explain who it is for at length.
+
+**The site is presented as one person's own project track, built from his own experience.** It is never presented as any institution's curriculum, and never implies any institution's endorsement.
+
+---
+
+## 2. Content sourcing rules (non-negotiable)
+
+The project track is inspired by the experience of going through a coding curriculum, but the site must not republish anyone else's course material.
+
+- Every project brief describes a **task type** (for example, "train an image classifier and compare a from-scratch CNN against a fine-tuned backbone"). Task types are not owned by anyone.
+- Every audit checklist is an **original verification check**, written from scratch, not a reproduction of any existing course's audit questions.
+- Project titles must be original. Do not reuse names from any external curriculum. (One title was already corrected during planning for being too close to a source: "Document Categorization" became "Scanned Document Classifier".)
+- Two projects are entirely the author's own work and can be written freely: a financial data pipeline and an autonomous research agent.
+
+If any content starts to look like a rephrasing of an external source's material, stop and rewrite it as an original task description.
+
+---
+
+## 3. Writing style (applies to all copy on the site)
+
+- No em dashes or en dashes anywhere. Use plain hyphens, or rewrite the sentence.
+- Avoid generic AI marketing words: delve, leverage, seamless, robust, unlock, elevate, cutting-edge, empower, transform, dive in.
+- Write plainly and directly. Short, concrete sentences.
+- Honest framing over marketing. The site never pretends a gap is filled when it is not.
+
+---
+
+## 4. Tech stack (recommended)
+
+- **Static site generator: Astro.** Chosen because the 12 project pages share one template; project content lives in simple content files and one layout renders every project page. Far easier to maintain than 12 hand-written HTML pages.
+- **Hosting:** GitHub Pages or Vercel (both free, static).
+- **No backend, no database, no accounts, no secrets.** v1 is fully static.
+- Add an appropriate `.gitignore` for the chosen stack. Never commit secrets or large build artifacts.
+
+---
+
+## 5. Site map
+
+```
+Home
+├─ About / Why this exists
+├─ Domains (choose your lane)
+├─ Project Track (index + one page per project)
+│   ├─ Project 01 ... Project 12
+├─ Recruiting Timeline (explainer + 2027 calendar)
+└─ Study Prompts (fast-follow, not in first build)
+```
+
+---
+
+## 6. Scope
+
+- **v1 (build now):** Home, About, Domains, all 12 project pages, Recruiting Timeline.
+- **Fast-follow (next, content not ready yet):** Study Prompts library.
+- **Later (not now):** a data-analyst project track (Power BI etc.), and anything dynamic (saved progress, accounts, ticking off checklist items). The site stays static for now.
+
+---
+
+## 7. Build order
+
+1. Home (with the roadmap spine)
+2. About
+3. Domains
+4. All 12 project pages
+5. Recruiting Timeline (last, because it needs outside research: real dates verified from each employer's careers page, plus a check on Gulf-specific recruiting cycles)
+6. Study Prompts (fast-follow)
+
+Recruiting is last because it is the only page blocked on research. Everything else can be built from this brief.
+
+---
+
+## 8. The project track (the heart of the site)
+
+12 projects, 5 phases, ordered for someone new to data science. Each project builds on the one before it. Titles below are working titles and may be refined when each page is written, but must stay original.
+
+| # | Title | Phase | What it teaches |
+|---|-------|-------|-----------------|
+| 01 | First Predictive Model | Foundations | full tabular ML workflow, EDA, baseline, train/test discipline, metrics |
+| 02 | Linear Algebra from Scratch | Foundations | matrix operations, least squares, PCA in NumPy without a library solver |
+| 03 | Text Classification | Core ML | tokenization, vectorization, a linear baseline vs a neural model |
+| 04 | Clustering with Eigenvectors | Core ML | unsupervised learning, similarity graphs, spectral clustering vs k-means |
+| 05 | Image Classification | Vision | a from-scratch CNN, then fine-tuning a pretrained backbone, comparison |
+| 06 | Scanned Document Classifier | Vision | OCR on scanned pages, sorting by layout and text |
+| 07 | Facial Emotion Recognition | Vision | image data, class imbalance, CV evaluation traps |
+| 08 | Market Time-Series Forecasting | Finance | temporal data, leakage, walk-forward validation, honest baselines |
+| 09 | Credit Default Prediction | Finance | imbalanced classification, ROC/PR, thresholding, SHAP interpretability |
+| 10 | Financial Data Pipeline | Finance | end-to-end ingest / parse / store / analyze, reproducibility, no manual steps |
+| 11 | Financial Document Assistant | Finance | RAG: embeddings, chunking, a vector store, retrieval, grounded answers with citations |
+| 12 | Autonomous Research Agent | Capstone | LLM agents, tool use, memory, a planning loop, evaluating agent output |
+
+Phase colors (used on the roadmap spine, nodes, and phase labels):
+- Foundations: blue `#60a5fa`
+- Core ML: cyan `#22d3ee`
+- Vision: green `#34d399`
+- Finance: amber `#fbbf24`
+- Capstone: violet `#a78bfa`
+
+Site main accent (hero, buttons, links): electric blue `#38bdf8`.
+
+**Ordering notes (the reasoning, so it is not accidentally changed):**
+- Linear algebra sits early as a foundation, not mid-track.
+- RAG (11) comes before the agent (12): RAG is the simpler retrieval pattern and is a stepping stone to the harder agent.
+- The agent is the capstone because it is the hardest project and it integrates earlier work (the pipeline can feed it data, the RAG assistant becomes one of its tools).
+- Projects 8 to 11 are the Finance lane, which is the domain this site teaches to depth (see Domains).
+
+### Each project page (shared template)
+
+- What you will build (the task type, one paragraph)
+- What it teaches (skills and concepts)
+- Tech / stack suggestions
+- Prerequisites (which earlier project to do first, if any)
+- Audit checklist (original verification checks)
+- "Done right looks like" (the bar, in plain words)
+
+---
+
+## 9. Page outlines
+
+### Home
+- Hero: headline "Want real data science, AI, and ML projects on your CV?", short subheading, one call-to-action button.
+- The roadmap: a vertical spine with the 12 projects grouped into their 5 phases (see layout spec below).
+- Short "two ways to specialize" teaser that links to the Domains page.
+
+### About / Why this exists
+- The author's story, direct and not corny: finished the coursework, felt the applied gap, closed it with self-driven real projects, that work is what made him employable. He is the proof the approach works.
+- This is the only page where the program is named, if it is named at all.
+- Where his finance edge and CFA Level I candidacy sit, since that explains why the track leans finance late.
+- No mission-statement filler.
+
+### Domains (choose your lane)
+- The concept, plainly: a data science career has two axes. **Domain** is where your data lives (the industry). **Function** is what you do to it (analyst, ML engineer, researcher). A role is one point on each axis.
+- Per domain, real example projects a student can build:
+  - **Finance (the deep lane):** projects 8 to 11 of the track. This is the domain the site teaches to depth, including career how-to (CFA path, the recruiting timeline).
+  - **Health:** chest X-ray classification, lung-function decline prediction from CT scans, Parkinson's prediction from voice measurements, diabetes and heart-disease prediction from tabular records. Skills: image classification (projects 5-7), tabular ML (project 1).
+  - **Marketing / retail:** customer churn prediction, customer segmentation with clustering, customer lifetime value prediction. Skills: tabular classification (project 1), clustering (project 4).
+  - **Sports and others:** named briefly with one example each (match-outcome prediction, player-performance models), so students know the lanes exist.
+- Honest framing line for the page: finance is the domain this site teaches to depth; the others show the shape of the work and a real project to start on.
+- Payoff to make explicit: every non-finance example maps back to a function skill the track already teaches. The Domains page is a lens on the same track, not separate content.
+
+### Recruiting Timeline (built last, needs research)
+- **Evergreen explainer:** summer internships vs off-cycle vs graduate programs; elite firms open applications roughly 12 months ahead and hire on a rolling basis, so applying early beats applying polished but late; why students miss this.
+- **2027 calendar:** target employers only (McKinsey, BCG, Big 4, BlackRock, JPMorgan, Goldman, and similar). No startups. Summer internships and graduate programs.
+- **Honesty mechanics:** a visible "Last updated" date at the top; every row links to the employer's own careers page and says "verify here"; do not invent dates. Pull each date live from the official careers page at build time and cite it. Rolling deadlines are shown honestly (no fake hard end date).
+- **Gulf caveat (important):** the "apply 12 months ahead, rolling" model and target-firm list come from the US/London bulge-bracket and MBB model. The audience applies in Bahrain / the GCC, where recruiting does not always run on the same clock. The page must say plainly: this is the elite finance/consulting model; confirm each firm's Gulf-specific process on their careers page. At build time, per employer, check whether the firm runs a program a Bahrain-based student can enter, and on what calendar.
+
+### Study Prompts (fast-follow)
+- A browsable library of prompts grouped by concept, each built to be copied into an AI tool. Content comes later (the author will provide a prompt to generalize). Not in the first build.
+
+---
+
+## 10. Layout specs
+
+### Roadmap spine (Home)
+- A single straight **vertical** spine running down the page. No angle, no curve.
+- The 12 projects grouped into their 5 phases as labeled sections down the spine.
+- Each project is a clickable card next to its glowing node on the spine, showing the project number, title, and one short line of description.
+- Each phase has its own distinct color (see phase colors above) for its segment of the spine, its nodes, and its phase label.
+- **Responsive:** the spine stays vertical on both desktop and mobile; cards go full width and stack cleanly on a narrow phone screen.
+
+### Application-window timeline (Recruiting page)
+- The 2027 calendar is shown as a horizontal timeline (a Gantt-style chart): one bar per firm/program drawn across the calendar year, the bar being the application window, with a "today" marker.
+- This makes the core lesson visual: a student sees a firm's window already closing while they stand at "today".
+- **Data-driven:** bars render from a simple dates file, so the twice-a-year update is editing a few numbers, not redrawing anything.
+- **Honest on rolling deadlines:** rolling windows fade out or end in an arrow rather than a hard wall.
+- **Responsive:** flips to a vertical timeline on mobile.
+- Only draw a firm's bar once its window is verified from the official careers page.
+
+---
+
+## 11. Measurable results and quality (for the project briefs)
+
+Each project in the track should report hard numbers produced by the code (accuracy, AUC, RMSE, latency, counts, coverage), not estimates. The audit checklist for each project should check for: correct data handling with no train/test leakage, fixed seeds where results must be reproducible, edge-case and error handling, and metrics actually produced by the code. These standards belong in the project page content, so students learn to hold their own work to them.
+
+---
+
+## 12. Naming note
+
+The site does not have a final public name yet. "projecttrack.dev" appeared in the design as an automatic placeholder and means nothing. The repo is named `data-science-project-track`, which is the GitHub folder name, not the site's brand. Pick a real site name before launch.
