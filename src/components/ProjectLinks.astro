@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  orders: number[];
+}
+
+const { orders } = Astro.props;
+const allProjects = await getCollection('projects');
+const items = orders
+  .map((order) => allProjects.find((p) => p.data.order === order))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<span>
+  {
+    items.map((project, i) => (
+      <>
+        {i > 0 && i === items.length - 1 ? ' and ' : i > 0 ? ', ' : ''}
+        <a href={`/projects/${project.id}/`}>{project.data.title}</a>
+      </>
+    ))
+  }
+</span>

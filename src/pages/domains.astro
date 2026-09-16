@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectLinks from '../components/ProjectLinks.astro';
+import { getPhase } from '../data/phases';
+
+const financeColor = getPhase('finance').color;
+---
+
+<BaseLayout
+  title="Domains - projecttrack.dev"
+  description="A data science career has two axes: domain and function. See where the track's projects fit."
+>
+  <article class="domains">
+    <p class="eyebrow">Domains</p>
+    <h1>Choose your lane</h1>
+
+    <p class="lede">
+      A data science career has two axes. <strong>Domain</strong> is where your data lives: finance, health, retail,
+      sports. <strong>Function</strong> is what you do to it: analyst, ML engineer, researcher. A role is one point
+      on each axis, not just a domain.
+    </p>
+
+    <section class="finance-lane" style={`--lane-color: ${financeColor};`}>
+      <p class="lane-label">The deep lane</p>
+      <h2>Finance</h2>
+      <p>
+        <ProjectLinks orders={[8, 9, 10, 11]} /> are the finance lane of the main track: market forecasting, credit
+        risk, a data pipeline, and a document assistant built on filings. This is the domain the site teaches to
+        depth, including how to break into it. See <a href="/about/">About</a> for the CFA angle and the
+        <a href="/recruiting/">Recruiting Timeline</a> for application windows.
+      </p>
+    </section>
+
+    <div class="domain-grid">
+      <div class="domain-card">
+        <h3>Health</h3>
+        <ul>
+          <li>Chest X-ray classification</li>
+          <li>Predicting lung-function decline from CT scans</li>
+          <li>Parkinson's prediction from voice measurements</li>
+          <li>Diabetes and heart-disease prediction from tabular records</li>
+        </ul>
+        <p class="skills">
+          Same skills as <ProjectLinks orders={[5, 6, 7]} /> (image classification) and
+          <ProjectLinks orders={[1]} /> (tabular ML).
+        </p>
+      </div>
+
+      <div class="domain-card">
+        <h3>Marketing and retail</h3>
+        <ul>
+          <li>Customer churn prediction</li>
+          <li>Customer segmentation with clustering</li>
+          <li>Customer lifetime value prediction</li>
+        </ul>
+        <p class="skills">
+          Same skills as <ProjectLinks orders={[1]} /> (tabular classification) and
+          <ProjectLinks orders={[4]} /> (clustering).
+        </p>
+      </div>
+
+      <div class="domain-card">
+        <h3>Sports, and other lanes</h3>
+        <p>Named briefly so you know they exist: match-outcome prediction, player-performance models.</p>
+        <p class="skills">Same underlying skills as everything above.</p>
+      </div>
+    </div>
+
+    <p class="closing">
+      Finance is the lane this site teaches to depth. The others show the shape of the work and a real project to
+      start on, not a full curriculum. Every non-finance example maps back to a function skill the track already
+      teaches: this page is a different lens on the same 12 projects, not separate content.
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .domains {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 5vw 120px;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 16px;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(30px, 4.2vw, 46px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+    color: var(--color-heading);
+  }
+  .lede {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0 0 48px;
+  }
+  .lede strong {
+    color: var(--color-heading);
+    font-weight: 600;
+  }
+
+  .finance-lane {
+    border: 1px solid color-mix(in srgb, var(--lane-color) 30%, transparent);
+    background: color-mix(in srgb, var(--lane-color) 6%, transparent);
+    border-radius: 16px;
+    padding: 28px 30px 30px;
+    margin-bottom: 40px;
+  }
+  .lane-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lane-color);
+    margin: 0 0 8px;
+  }
+  .finance-lane h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.015em;
+    color: var(--color-heading);
+    margin: 0 0 14px;
+  }
+  .finance-lane p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .domain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .domain-card {
+    border: 1px solid var(--color-border);
+    background: var(--color-card-bg);
+    border-radius: 14px;
+    padding: 24px 24px 26px;
+  }
+  .domain-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.015em;
+    color: var(--color-heading);
+    margin: 0 0 14px;
+  }
+  .domain-card ul {
+    margin: 0 0 16px;
+    padding-left: 20px;
+  }
+  .domain-card li {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin-bottom: 6px;
+  }
+  .domain-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0 0 16px;
+  }
+  .domain-card .skills {
+    font-size: 14px;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  .closing {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0;
+  }
+</style>
