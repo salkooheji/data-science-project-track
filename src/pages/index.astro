@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RoadmapSpine from '../components/RoadmapSpine.astro';
+---
+
+<BaseLayout title="projecttrack.dev - Real data science projects for your CV">
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <p class="eyebrow">12 projects &middot; 5 phases &middot; one order</p>
+    <h1>Want real data science, AI, and ML projects on your CV?</h1>
+    <p class="subhead">
+      Build 12 projects in order, from your first predictive model to an autonomous research agent. Each one teaches
+      the skill the next one needs, and each one is ready to show.
+    </p>
+    <a href="#roadmap" class="cta">Start the track <span class="arrow">&rarr;</span></a>
+  </section>
+
+  <RoadmapSpine />
+</BaseLayout>
+
+<style>
+  .hero {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 88px 5vw 104px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-glow {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 760px;
+    height: 420px;
+    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.13), rgba(56, 189, 248, 0) 68%);
+    pointer-events: none;
+  }
+  .eyebrow {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 28px;
+  }
+  h1 {
+    position: relative;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(38px, 6.2vw, 78px);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    margin: 0;
+    text-wrap: balance;
+    color: var(--color-heading);
+  }
+  .subhead {
+    position: relative;
+    max-width: 620px;
+    margin: 30px auto 0;
+    font-size: clamp(16px, 1.6vw, 19px);
+    line-height: 1.6;
+    color: var(--color-muted);
+    text-wrap: pretty;
+  }
+  .cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 44px;
+    padding: 16px 30px;
+    border-radius: 999px;
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
+    transition:
+      background 150ms ease,
+      box-shadow 150ms ease;
+  }
+  .cta:hover {
+    background: var(--color-accent-hover);
+    box-shadow: 0 0 56px rgba(56, 189, 248, 0.45);
+    color: var(--color-accent-ink);
+  }
+  .arrow {
+    font-family: var(--font-mono);
+  }
+</style>
