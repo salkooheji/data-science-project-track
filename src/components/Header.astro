@@ -41,7 +41,8 @@ const navLinks = [
   nav {
     display: flex;
     align-items: center;
-    gap: 28px;
+    flex-wrap: wrap;
+    gap: 16px 28px;
     font-size: 14px;
   }
   nav a {
@@ -51,5 +52,14 @@ const navLinks = [
   }
   nav a:hover {
     color: var(--color-heading);
+  }
+
+  @media (max-width: 560px) {
+    .site-header {
+      flex-wrap: wrap;
+    }
+    nav {
+      gap: 10px 16px;
+    }
   }
 </style>
