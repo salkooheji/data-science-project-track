@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import { PHASES } from '../data/phases';
+import PhaseSection from './PhaseSection.astro';
+
+const allProjects = await getCollection('projects');
+const phaseGroups = PHASES.map((phase) => ({
+  phase,
+  projects: allProjects.filter((p) => p.data.phase === phase.id).sort((a, b) => a.data.order - b.data.order),
+})).filter((group) => group.projects.length > 0);
+---
+
+<section id="roadmap" class="roadmap">
+  <div class="roadmap-header">
+    <h2>The roadmap</h2>
+    <p>Top to bottom, project 01 first</p>
+  </div>
+
+  {phaseGroups.map((group) => <PhaseSection phase={group.phase} projects={group.projects} />)}
+</section>
+
+<style>
+  .roadmap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 5vw 72px;
+  }
+  .roadmap-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid var(--color-hairline);
+    padding: 30px 0 32px;
+  }
+  .roadmap-header h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(24px, 3vw, 34px);
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--color-heading);
+  }
+  .roadmap-header p {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin: 0;
+  }
+</style>

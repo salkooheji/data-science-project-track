@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const firstProject = projects.find((p) => p.data.order === 1);
+---
+
+<footer class="site-footer">
+  <span class="site-name">projecttrack.dev</span>
+  {
+    firstProject && (
+      <a href={`/projects/${firstProject.id}/`} class="cta">
+        Begin with project 01 &rarr;
+      </a>
+    )
+  }
+</footer>
+
+<style>
+  .site-footer {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 34px 5vw 60px;
+    border-top: 1px solid var(--color-hairline);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .site-name {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .cta {
+    font-size: 14px;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+  .cta:hover {
+    color: var(--color-accent-hover);
+  }
+</style>

@@ -1,0 +1,55 @@
+---
+// "projecttrack.dev" is the placeholder wordmark that came from the Design
+// export (PROJECT_BRIEF.md section 12) - it means nothing yet. Swap it once a
+// real site name is picked, before launch.
+const navLinks = [
+  { href: '/#roadmap', label: 'The track' },
+  { href: '/about/', label: 'About' },
+  { href: '/domains/', label: 'Domains' },
+  { href: '/recruiting/', label: 'Recruiting' },
+];
+---
+
+<header class="site-header">
+  <a href="/" class="wordmark">projecttrack<span class="accent">.dev</span></a>
+  <nav>
+    {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 26px 5vw;
+    max-width: 1360px;
+    margin: 0 auto;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: var(--color-heading);
+    text-decoration: none;
+  }
+  .accent {
+    color: var(--color-accent);
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-size: 14px;
+  }
+  nav a {
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+  nav a:hover {
+    color: var(--color-heading);
+  }
+</style>

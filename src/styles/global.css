@@ -1,0 +1,52 @@
+/* Design tokens pulled from design-reference/Landing Page.dc.html */
+:root {
+  --color-bg: #0a0e14;
+  --color-text: #e6edf3;
+  --color-heading: #f4f8fb;
+  --color-muted: #8b949e;
+  --color-accent: #38bdf8;
+  --color-accent-hover: #7dd3fc;
+  --color-accent-ink: #06131d;
+
+  --color-border: rgba(230, 237, 243, 0.09);
+  --color-border-hover: rgba(230, 237, 243, 0.16);
+  --color-card-bg: rgba(230, 237, 243, 0.025);
+  --color-card-bg-hover: rgba(230, 237, 243, 0.055);
+  --color-hairline: rgba(230, 237, 243, 0.08);
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+img {
+  max-width: 100%;
+}

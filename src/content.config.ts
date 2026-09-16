@@ -13,13 +13,18 @@ const projects = defineCollection({
     phase: z.enum(PHASE_IDS),
     // One short line shown on the roadmap card (Home) and in nav/meta contexts.
     summary: z.string(),
-    whatYouWillBuild: z.string(),
-    whatItTeaches: z.array(z.string()),
-    stack: z.array(z.string()),
+    // The remaining fields are the actual page write-up, authored one project
+    // at a time in the project-pages build phase. Optional for now so stub
+    // entries (title/order/phase/summary only) can back the Home roadmap
+    // before every page is written. Tighten these to required once all 12
+    // project pages exist.
+    whatYouWillBuild: z.string().optional(),
+    whatItTeaches: z.array(z.string()).optional(),
+    stack: z.array(z.string()).optional(),
     // Slugs of earlier project entries that should be done first, if any.
     prerequisites: z.array(z.string()).default([]),
-    auditChecklist: z.array(z.string()),
-    doneRightLooksLike: z.string(),
+    auditChecklist: z.array(z.string()).optional(),
+    doneRightLooksLike: z.string().optional(),
   }),
 });
 

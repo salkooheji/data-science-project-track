@@ -1,0 +1,66 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Phase } from '../data/phases';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  phase: Phase;
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { phase, projects } = Astro.props;
+const isCapstone = phase.id === 'capstone';
+---
+
+<div class="phase" style={`--phase-color: ${phase.color};`}>
+  <div class="phase-label">
+    <span class="phase-number">Phase {phase.number}</span>
+    <span class="phase-name">{phase.label}</span>
+  </div>
+  <div class="rows">
+    {projects.map((project) => <ProjectCard entry={project} color={phase.color} isCapstone={isCapstone} />)}
+  </div>
+</div>
+
+<style>
+  .phase {
+    position: relative;
+    border-left: 2px solid var(--phase-color);
+    padding-bottom: 18px;
+  }
+  .phase:last-child {
+    padding-bottom: 0;
+  }
+  .phase-label {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding-left: 26px;
+    margin-bottom: 10px;
+  }
+  .phase-number {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--phase-color);
+  }
+  .phase-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.015em;
+    color: var(--phase-color);
+  }
+  .rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (max-width: 720px) {
+    .phase-label {
+      padding-left: 30px;
+    }
+  }
+</style>
