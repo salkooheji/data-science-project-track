@@ -131,7 +131,22 @@ Site main accent (hero, buttons, links): electric blue `#38bdf8`.
 - Tech / stack suggestions
 - Prerequisites (which earlier project to do first, if any)
 - Audit checklist (original verification checks)
+- "Learn it with AI" prompt (see rule below)
 - "Done right looks like" (the bar, in plain words)
+
+### "Learn it with AI" prompts
+
+Each project page includes a "Learn it with AI" prompt: a prompt the student pastes into an AI assistant so the AI teaches them that project step by step. The prompt must make the AI a **teacher**. It must instruct the AI to:
+
+- explain each concept in plain terms before showing code
+- write the code itself so the student does not have to type everything out
+- walk through the code and clearly point out the important lines and what they do
+- go one small step at a time rather than dumping the whole solution at once
+- before moving to the next step, check that the student actually understands, by asking them to explain a part back in their own words or predict what a line or block does
+
+The student does not need to write the code themselves, but they must not passively read and agree either. The goal is that the student can explain every line in an interview, not just recognize it.
+
+Each prompt must be specific to its project: it names that project's key concepts, the lines or ideas most worth understanding, its common mistakes, and its required deliverable. Do not write one generic prompt reused across projects with only the title changed.
 
 ---
 
