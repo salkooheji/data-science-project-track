@@ -63,7 +63,7 @@ Home
 ├─ Domains (choose your lane)
 ├─ Project Track (index + one page per project)
 │   ├─ Project 01 ... Project 12
-├─ Recruiting Timeline (explainer + 2027 calendar)
+├─ Recruiting Timeline (explainer + 2027 calendar; later / v2, not in first build)
 └─ Study Prompts (fast-follow, not in first build)
 ```
 
@@ -71,9 +71,9 @@ Home
 
 ## 6. Scope
 
-- **v1 (build now):** Home, About, Domains, all 12 project pages, Recruiting Timeline.
+- **v1 (build now):** Home, About, Domains, all 12 project pages.
 - **Fast-follow (next, content not ready yet):** Study Prompts library.
-- **Later (not now):** a data-analyst project track (Power BI etc.), and anything dynamic (saved progress, accounts, ticking off checklist items). The site stays static for now.
+- **Later / v2 (not now):** the Recruiting Timeline (deferred, not dropped; full spec kept in sections 9 and 10 for when it's built), a data-analyst project track (Power BI etc.), and anything dynamic (saved progress, accounts, ticking off checklist items). The site stays static for now.
 
 ---
 
@@ -83,10 +83,9 @@ Home
 2. About
 3. Domains
 4. All 12 project pages
-5. Recruiting Timeline (last, because it needs outside research: real dates verified from each employer's careers page, plus a check on Gulf-specific recruiting cycles)
-6. Study Prompts (fast-follow)
+5. Study Prompts (fast-follow)
 
-Recruiting is last because it is the only page blocked on research. Everything else can be built from this brief.
+The Recruiting Timeline is deferred to later / v2 (see section 6), since it needs outside research: real dates verified from each employer's careers page, plus a check on Gulf-specific recruiting cycles. Everything in this v1 build order can be built from this brief without outside research.
 
 ---
 
@@ -166,14 +165,14 @@ Each prompt must be specific to its project: it names that project's key concept
 ### Domains (choose your lane)
 - The concept, plainly: a data science career has two axes. **Domain** is where your data lives (the industry). **Function** is what you do to it (analyst, ML engineer, researcher). A role is one point on each axis.
 - Per domain, real example projects a student can build:
-  - **Finance (the deep lane):** projects 8 to 11 of the track. This is the domain the site teaches to depth, including career how-to (CFA path, the recruiting timeline).
+  - **Finance (the deep lane):** projects 8 to 11 of the track. This is the domain the site teaches to depth, including career how-to (CFA path).
   - **Health:** chest X-ray classification, lung-function decline prediction from CT scans, Parkinson's prediction from voice measurements, diabetes and heart-disease prediction from tabular records. Skills: image classification (projects 5-7), tabular ML (project 1).
   - **Marketing / retail:** customer churn prediction, customer segmentation with clustering, customer lifetime value prediction. Skills: tabular classification (project 1), clustering (project 4).
   - **Sports and others:** named briefly with one example each (match-outcome prediction, player-performance models), so students know the lanes exist.
 - Honest framing line for the page: finance is the domain this site teaches to depth; the others show the shape of the work and a real project to start on.
 - Payoff to make explicit: every non-finance example maps back to a function skill the track already teaches. The Domains page is a lens on the same track, not separate content.
 
-### Recruiting Timeline (built last, needs research)
+### Recruiting Timeline (later / v2 scope, deferred from v1; still needs research)
 - **Evergreen explainer:** summer internships vs off-cycle vs graduate programs; elite firms open applications roughly 12 months ahead and hire on a rolling basis, so applying early beats applying polished but late; why students miss this.
 - **2027 calendar:** target employers only (McKinsey, BCG, Big 4, BlackRock, JPMorgan, Goldman, and similar). No startups. Summer internships and graduate programs.
 - **Honesty mechanics:** a visible "Last updated" date at the top; every row links to the employer's own careers page and says "verify here"; do not invent dates. Pull each date live from the official careers page at build time and cite it. Rolling deadlines are shown honestly (no fake hard end date).
@@ -193,7 +192,7 @@ Each prompt must be specific to its project: it names that project's key concept
 - Each phase has its own distinct color (see phase colors above) for its segment of the spine, its nodes, and its phase label.
 - **Responsive:** the spine stays vertical on both desktop and mobile; cards go full width and stack cleanly on a narrow phone screen.
 
-### Application-window timeline (Recruiting page)
+### Application-window timeline (Recruiting page, later / v2, not built yet)
 - The 2027 calendar is shown as a horizontal timeline (a Gantt-style chart): one bar per firm/program drawn across the calendar year, the bar being the application window, with a "today" marker.
 - This makes the core lesson visual: a student sees a firm's window already closing while they stand at "today".
 - **Data-driven:** bars render from a simple dates file, so the twice-a-year update is editing a few numbers, not redrawing anything.
