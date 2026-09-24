@@ -1,0 +1,401 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import CopyPromptButton from '../components/CopyPromptButton.astro';
+import { getPhase } from '../data/phases';
+import { renderInline } from '../lib/inlineCode';
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+  prevEntry: CollectionEntry<'projects'> | null;
+  nextEntry: CollectionEntry<'projects'> | null;
+}
+
+const { entry, prevEntry, nextEntry } = Astro.props;
+const project = entry.data;
+const phase = getPhase(project.phase);
+const orderLabel = String(project.order).padStart(2, '0');
+const hasContent = project.whatYouWillBuild !== undefined;
+const choosingHeading = project.choosingYourDataHeading ?? 'Choosing your data';
+---
+
+<BaseLayout
+  title={`${project.title} - projecttrack.dev`}
+  description={project.summary}
+>
+  <article class="project" style={`--phase-color: ${phase.color};`}>
+    <div class="meta">
+      <span class="phase-badge">{phase.label}</span>
+      <span class="order-label">Project {orderLabel}</span>
+    </div>
+    <h1>{project.title}</h1>
+    <p class="lede">{project.summary}</p>
+
+    {
+      !hasContent && (
+        <p class="coming-soon">This project page hasn't been written yet. Check back soon.</p>
+      )
+    }
+
+    {
+      hasContent && (
+        <div class="sections">
+          {project.whatYouWillBuild && (
+            <section>
+              <h2>What you'll build</h2>
+              <p set:html={renderInline(project.whatYouWillBuild)} />
+            </section>
+          )}
+
+          {project.whatItTeaches && project.whatItTeaches.length > 0 && (
+            <section>
+              <h2>What it teaches</h2>
+              <ul class="plain-list">
+                {project.whatItTeaches.map((item) => <li set:html={renderInline(item)} />)}
+              </ul>
+            </section>
+          )}
+
+          {project.stack && (
+            <section>
+              <h2>Stack</h2>
+              <p set:html={renderInline(project.stack)} />
+            </section>
+          )}
+
+          {project.prerequisites && (
+            <section>
+              <h2>Prerequisites</h2>
+              <p set:html={renderInline(project.prerequisites)} />
+            </section>
+          )}
+
+          {project.choosingYourData && (
+            <section>
+              <h2>{choosingHeading}</h2>
+              <p set:html={renderInline(project.choosingYourData)} />
+            </section>
+          )}
+
+          {project.deliverable && project.deliverable.length > 0 && (
+            <section>
+              <h2>The deliverable</h2>
+              <ul class="plain-list">
+                {project.deliverable.map((item) => <li set:html={renderInline(item)} />)}
+              </ul>
+            </section>
+          )}
+
+          {project.howLongItTakes && (
+            <section>
+              <h2>How long it takes</h2>
+              <p set:html={renderInline(project.howLongItTakes)} />
+            </section>
+          )}
+
+          {project.learnWithAIPrompt && (
+            <section>
+              <h2>Learn it with AI</h2>
+              <p>Copy this prompt into an AI assistant and follow along.</p>
+              <div class="prompt-block">
+                <div class="prompt-toolbar">
+                  <span>Prompt</span>
+                  <CopyPromptButton targetId="ai-prompt" />
+                </div>
+                <pre><code id="ai-prompt">{project.learnWithAIPrompt}</code></pre>
+              </div>
+            </section>
+          )}
+
+          {project.auditChecklist && project.auditChecklist.length > 0 && (
+            <section>
+              <h2>Audit checklist</h2>
+              <p>Check your own work against these before calling it done:</p>
+              <ul class="checklist">
+                {project.auditChecklist.map((item) => (
+                  <li>
+                    <label>
+                      <input type="checkbox" />
+                      <span set:html={renderInline(item)} />
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {project.shareYourWork && (
+            <section>
+              <h2>Share your work</h2>
+              <p set:html={renderInline(project.shareYourWork)} />
+            </section>
+          )}
+
+          {project.doneRightLooksLike && (
+            <section>
+              <h2>Done right looks like</h2>
+              <p set:html={renderInline(project.doneRightLooksLike)} />
+            </section>
+          )}
+        </div>
+      )
+    }
+
+    <nav class="project-nav">
+      {
+        prevEntry ? (
+          <a href={`/projects/${prevEntry.id}/`} class="nav-link prev">
+            <span class="nav-label">&larr; Previous</span>
+            <span class="nav-title">{prevEntry.data.title}</span>
+          </a>
+        ) : (
+          <span class="nav-link disabled" />
+        )
+      }
+      {
+        nextEntry ? (
+          <a href={`/projects/${nextEntry.id}/`} class="nav-link next">
+            <span class="nav-label">Next &rarr;</span>
+            <span class="nav-title">{nextEntry.data.title}</span>
+          </a>
+        ) : (
+          <span class="nav-link disabled" />
+        )
+      }
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .project {
+    width: min(100% - 48px, 760px);
+    margin-inline: auto;
+    padding-block: 64px 100px;
+  }
+  .meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .phase-badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--phase-color);
+    border: 1px solid color-mix(in srgb, var(--phase-color) 40%, transparent);
+    background: color-mix(in srgb, var(--phase-color) 10%, transparent);
+    border-radius: 999px;
+    padding: 5px 12px;
+  }
+  .order-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+    color: var(--color-heading);
+  }
+  .lede {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-muted);
+    margin: 0 0 48px;
+  }
+  .coming-soon {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-muted);
+    border: 1px dashed var(--color-border-hover);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 0 0 48px;
+  }
+
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+    margin-bottom: 56px;
+  }
+  section h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 21px;
+    letter-spacing: -0.015em;
+    color: var(--color-heading);
+    margin: 0 0 14px;
+  }
+  section p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0 0 12px;
+  }
+  section p:last-child {
+    margin-bottom: 0;
+  }
+  section :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    padding: 0.1em 0.4em;
+  }
+
+  .plain-list {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .plain-list li {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .checklist li {
+    border: 1px solid var(--color-border);
+    background: var(--color-card-bg);
+    border-radius: 10px;
+  }
+  .checklist label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+  }
+  .checklist input[type='checkbox'] {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--phase-color);
+    flex-shrink: 0;
+  }
+  .checklist span {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .prompt-block {
+    border: 1px solid var(--color-border);
+    background: var(--color-card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .prompt-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .prompt-block pre {
+    margin: 0;
+    padding: 20px;
+    overflow-x: auto;
+    max-height: 520px;
+    overflow-y: auto;
+  }
+  .prompt-block code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--color-text);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .project-nav {
+    display: flex;
+    gap: 16px;
+    border-top: 1px solid var(--color-hairline);
+    padding-top: 32px;
+  }
+  .nav-link {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    text-decoration: none;
+    transition:
+      background 150ms ease,
+      border-color 150ms ease;
+  }
+  .nav-link:hover {
+    background: var(--color-card-bg-hover);
+    border-color: var(--color-border-hover);
+  }
+  .nav-link.next {
+    text-align: right;
+    align-items: flex-end;
+  }
+  .nav-link.disabled {
+    flex: 1;
+    border: none;
+  }
+  .nav-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .nav-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--color-heading);
+  }
+
+  @media (max-width: 600px) {
+    .project {
+      padding-block: 44px 72px;
+    }
+    .sections {
+      gap: 36px;
+    }
+    .prompt-block pre {
+      padding: 16px;
+      max-height: 420px;
+    }
+    .project-nav {
+      flex-direction: column;
+    }
+    .nav-link.next {
+      text-align: left;
+      align-items: flex-start;
+    }
+  }
+</style>
