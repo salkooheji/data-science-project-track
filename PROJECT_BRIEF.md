@@ -130,8 +130,12 @@ Site main accent (hero, buttons, links): electric blue `#38bdf8`.
 - What it teaches (skills and concepts)
 - Tech / stack suggestions
 - Prerequisites (which earlier project to do first, if any)
-- Audit checklist (original verification checks)
+- Choosing your data (or competition, dataset, source, depending on the project)
+- The deliverable
+- How long it takes
 - "Learn it with AI" prompt (see rule below)
+- Audit checklist (original verification checks)
+- Share your work
 - "Done right looks like" (the bar, in plain words)
 
 ### "Learn it with AI" prompts
@@ -147,6 +151,15 @@ Each project page includes a "Learn it with AI" prompt: a prompt the student pas
 The student does not need to write the code themselves, but they must not passively read and agree either. The goal is that the student can explain every line in an interview, not just recognize it.
 
 Each prompt must be specific to its project: it names that project's key concepts, the lines or ideas most worth understanding, its common mistakes, and its required deliverable. Do not write one generic prompt reused across projects with only the title changed.
+
+Every "Learn it with AI" prompt uses the same teaching method as Project 01:
+- The project is split into numbered blocks, each with a time estimate. After the first block, the prompt has the AI check how long it actually took and recalibrate the remaining estimates to the student's real pace.
+- Each block ends with short notes the student can copy into their own notes, and 2 or 3 check questions the AI will not let them skip past.
+- Each block ends with what to commit and push to GitHub, with the commit message written together.
+- The audit checklist lives inside the prompt itself as its own block, gone through one item at a time with the AI asking for evidence, not just agreement.
+- The prompt ends with an honest sharing block: write up the work truthfully, with real numbers, for somewhere like LinkedIn, without exaggerating what was built.
+
+Projects 02 to 12 open Block 0 by asking the student whether they already did the earlier projects in the track. If yes, skip tool setup and teach only what is new for this project. If no, teach the basics first, the same way Project 01 does.
 
 ---
 
