@@ -105,15 +105,15 @@ The Recruiting Timeline is deferred to later / v2 (see section 6), since it need
 | 08 | Market Time-Series Forecasting | Finance | temporal data, leakage, walk-forward validation, honest baselines |
 | 09 | Credit Default Prediction | Finance | imbalanced classification, ROC/PR, thresholding, SHAP interpretability |
 | 10 | Financial Data Pipeline | Finance | end-to-end ingest / parse / store / analyze, reproducibility, no manual steps |
-| 11 | Financial Document Assistant | Finance | RAG: embeddings, chunking, a vector store, retrieval, grounded answers with citations |
-| 12 | Autonomous Research Agent | Capstone | LLM agents, tool use, memory, a planning loop, evaluating agent output |
+| 11 | Document Assistant (RAG) | LLMs and Agents | RAG: embeddings, chunking, a vector store, retrieval, grounded answers with citations |
+| 12 | Autonomous Research Agent | LLMs and Agents | LLM agents, tool use, memory, a planning loop, evaluating agent output |
 
 Phase colors (used on the roadmap spine, nodes, and phase labels):
 - Foundations: blue `#60a5fa`
 - Core ML: cyan `#22d3ee`
 - Vision: green `#34d399`
 - Finance: amber `#fbbf24`
-- Capstone: violet `#a78bfa`
+- LLMs and Agents: violet `#a78bfa`
 
 Site main accent (hero, buttons, links): electric blue `#38bdf8`.
 
@@ -121,7 +121,8 @@ Site main accent (hero, buttons, links): electric blue `#38bdf8`.
 - Linear algebra sits early as a foundation, not mid-track.
 - RAG (11) comes before the agent (12): RAG is the simpler retrieval pattern and is a stepping stone to the harder agent.
 - The agent is the capstone because it is the hardest project and it integrates earlier work (the pipeline can feed it data, the RAG assistant becomes one of its tools).
-- Projects 8 to 11 are the Finance lane, which is the domain this site teaches to depth (see Domains).
+- Projects 8 to 10 are the Finance lane, which is the domain this site teaches to depth (see Domains).
+- Project 11 (RAG) works on any large document collection the student picks. It can optionally reuse project 10's data (the pipeline's financial filings), but it is not a Finance-lane project; it sits in the LLMs and Agents phase with the capstone.
 
 ### Each project page (shared template)
 
@@ -165,7 +166,7 @@ Each prompt must be specific to its project: it names that project's key concept
 ### Domains (choose your lane)
 - The concept, plainly: a data science career has two axes. **Domain** is where your data lives (the industry). **Function** is what you do to it (analyst, ML engineer, researcher). A role is one point on each axis.
 - Per domain, real example projects a student can build:
-  - **Finance (the deep lane):** projects 8 to 11 of the track. This is the domain the site teaches to depth, including career how-to (CFA path).
+  - **Finance (the deep lane):** projects 8 to 10 of the track. This is the domain the site teaches to depth, including career how-to (CFA path).
   - **Health:** chest X-ray classification, lung-function decline prediction from CT scans, Parkinson's prediction from voice measurements, diabetes and heart-disease prediction from tabular records. Skills: image classification (projects 5-7), tabular ML (project 1).
   - **Marketing / retail:** customer churn prediction, customer segmentation with clustering, customer lifetime value prediction. Skills: tabular classification (project 1), clustering (project 4).
   - **Sports and others:** named briefly with one example each (match-outcome prediction, player-performance models), so students know the lanes exist.

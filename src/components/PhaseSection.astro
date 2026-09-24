@@ -9,7 +9,6 @@ interface Props {
 }
 
 const { phase, projects } = Astro.props;
-const isCapstone = phase.id === 'capstone';
 ---
 
 <div class="phase" style={`--phase-color: ${phase.color};`}>
@@ -18,7 +17,7 @@ const isCapstone = phase.id === 'capstone';
     <span class="phase-name">{phase.label}</span>
   </div>
   <div class="rows">
-    {projects.map((project) => <ProjectCard entry={project} color={phase.color} isCapstone={isCapstone} />)}
+    {projects.map((project) => <ProjectCard entry={project} color={phase.color} isCapstone={project.data.order === 12} />)}
   </div>
 </div>
 
