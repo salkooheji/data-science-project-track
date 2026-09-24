@@ -17,6 +17,10 @@ const phase = getPhase(project.phase);
 const orderLabel = String(project.order).padStart(2, '0');
 const hasContent = project.whatYouWillBuild !== undefined;
 const choosingHeading = project.choosingYourDataHeading ?? 'Choosing your data';
+const checklistCount = project.auditChecklist?.length ?? 0;
+
+const AI_MODEL_NOTE =
+  "Use the strongest AI model you have access to. Claude, ChatGPT and Gemini all work. Paid tiers or thinking modes explain better and make fewer mistakes on long projects. If code gives an error, paste the full error back and ask it to explain the fix.";
 ---
 
 <BaseLayout
@@ -97,6 +101,7 @@ const choosingHeading = project.choosingYourDataHeading ?? 'Choosing your data';
             <section>
               <h2>Learn it with AI</h2>
               <p>Copy this prompt into an AI assistant and follow along.</p>
+              <p class="ai-model-note">{AI_MODEL_NOTE}</p>
               <div class="prompt-block">
                 <div class="prompt-toolbar">
                   <span>Prompt</span>
@@ -111,16 +116,20 @@ const choosingHeading = project.choosingYourDataHeading ?? 'Choosing your data';
             <section>
               <h2>Audit checklist</h2>
               <p>Check your own work against these before calling it done:</p>
-              <ul class="checklist">
-                {project.auditChecklist.map((item) => (
+              <ul class="checklist" data-checklist data-slug={entry.id}>
+                {project.auditChecklist.map((item, i) => (
                   <li>
                     <label>
-                      <input type="checkbox" />
+                      <input type="checkbox" data-index={i} />
                       <span set:html={renderInline(item)} />
                     </label>
                   </li>
                 ))}
               </ul>
+              <p class="storage-note">
+                Your ticks are saved in this browser only.
+                <button type="button" class="link-btn" data-clear-checklist>Clear</button>
+              </p>
             </section>
           )}
 
@@ -137,6 +146,25 @@ const choosingHeading = project.choosingYourDataHeading ?? 'Choosing your data';
               <p set:html={renderInline(project.doneRightLooksLike)} />
             </section>
           )}
+
+          <section class="progress-section" data-slug={entry.id}>
+            <h2>Your progress</h2>
+            <div class="progress-row">
+              <button type="button" class="mark-done-btn" data-mark-done>
+                Mark this project as done
+              </button>
+              {
+                checklistCount > 0 && (
+                  <span class="checklist-count" data-checklist-count>
+                    0 of {checklistCount} checks ticked
+                  </span>
+                )
+              }
+            </div>
+            <p class="all-done-note" data-all-done-note hidden>
+              All checks done. Mark this project as done?
+            </p>
+          </section>
         </div>
       )
     }
@@ -165,6 +193,63 @@ const choosingHeading = project.choosingYourDataHeading ?? 'Choosing your data';
     </nav>
   </article>
 </BaseLayout>
+
+<script>
+  import { clearChecklistState, getChecklistState, isProjectDone, setChecklistState, setProjectDone } from '../lib/progress';
+
+  const checklistEl = document.querySelector<HTMLUListElement>('[data-checklist]');
+  const countEl = document.querySelector<HTMLElement>('[data-checklist-count]');
+  const allDoneNote = document.querySelector<HTMLElement>('[data-all-done-note]');
+
+  if (checklistEl) {
+    const slug = checklistEl.dataset.slug ?? '';
+    const checkboxes = Array.from(checklistEl.querySelectorAll<HTMLInputElement>('input[type="checkbox"]'));
+    const total = checkboxes.length;
+
+    const updateCount = () => {
+      const ticked = checkboxes.filter((cb) => cb.checked).length;
+      if (countEl) countEl.textContent = `${ticked} of ${total} checks ticked`;
+      if (allDoneNote) allDoneNote.hidden = total === 0 || ticked !== total;
+    };
+
+    const saved = getChecklistState(slug);
+    checkboxes.forEach((cb, i) => {
+      cb.checked = Boolean(saved[i]);
+      cb.addEventListener('change', () => {
+        setChecklistState(slug, checkboxes.map((c) => c.checked));
+        updateCount();
+      });
+    });
+    updateCount();
+
+    const clearButton = document.querySelector<HTMLButtonElement>('[data-clear-checklist]');
+    clearButton?.addEventListener('click', () => {
+      checkboxes.forEach((cb) => {
+        cb.checked = false;
+      });
+      clearChecklistState(slug);
+      updateCount();
+    });
+  }
+
+  const markDoneBtn = document.querySelector<HTMLButtonElement>('[data-mark-done]');
+  const progressSection = document.querySelector<HTMLElement>('.progress-section');
+  if (markDoneBtn && progressSection) {
+    const slug = progressSection.dataset.slug ?? '';
+
+    const renderDoneState = () => {
+      const done = isProjectDone(slug);
+      markDoneBtn.textContent = done ? 'Marked as done (click to unmark)' : 'Mark this project as done';
+      markDoneBtn.classList.toggle('is-done', done);
+    };
+
+    markDoneBtn.addEventListener('click', () => {
+      setProjectDone(slug, !isProjectDone(slug));
+      renderDoneState();
+    });
+    renderDoneState();
+  }
+</script>
 
 <style>
   .project {
@@ -245,13 +330,24 @@ const choosingHeading = project.choosingYourDataHeading ?? 'Choosing your data';
   section p:last-child {
     margin-bottom: 0;
   }
-  section :global(code) {
+  section :global(code.inline-code) {
     font-family: var(--font-mono);
     font-size: 0.9em;
     background: var(--color-card-bg);
     border: 1px solid var(--color-border);
     border-radius: 5px;
     padding: 0.1em 0.4em;
+  }
+
+  .ai-model-note {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-muted);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 0 0 16px;
   }
 
   .plain-list {
@@ -300,6 +396,29 @@ const choosingHeading = project.choosingYourDataHeading ?? 'Choosing your data';
     color: var(--color-text);
   }
 
+  .storage-note {
+    font-size: 13px;
+    color: var(--color-muted);
+    margin: 12px 0 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .link-btn {
+    font: inherit;
+    font-size: 13px;
+    color: var(--color-accent);
+    background: none;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .link-btn:hover {
+    color: var(--color-accent-hover);
+  }
+
   .prompt-block {
     border: 1px solid var(--color-border);
     background: var(--color-card-bg);
@@ -332,6 +451,47 @@ const choosingHeading = project.choosingYourDataHeading ?? 'Choosing your data';
     color: var(--color-text);
     white-space: pre-wrap;
     word-break: break-word;
+  }
+
+  .progress-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .mark-done-btn {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--color-heading);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition:
+      background 150ms ease,
+      border-color 150ms ease,
+      color 150ms ease;
+  }
+  .mark-done-btn:hover {
+    background: var(--color-card-bg-hover);
+    border-color: var(--color-border-hover);
+  }
+  .mark-done-btn.is-done {
+    color: var(--color-accent-ink);
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+  .checklist-count {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-muted);
+  }
+  .all-done-note {
+    font-size: 14px;
+    color: var(--phase-color);
+    margin: 14px 0 0;
   }
 
   .project-nav {

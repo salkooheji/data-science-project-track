@@ -5,5 +5,5 @@ export function renderInline(text: string): string {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
-  return escaped.replace(/`([^`]+)`/g, '<code>$1</code>');
+  return escaped.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
 }
