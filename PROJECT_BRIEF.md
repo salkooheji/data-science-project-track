@@ -50,7 +50,7 @@ Original framing keeps each project safe and original; the deliverable keeps it 
 
 - **Static site generator: Astro.** Chosen because the 12 project pages share one template; project content lives in simple content files and one layout renders every project page. Far easier to maintain than 12 hand-written HTML pages.
 - **Hosting:** GitHub Pages or Vercel (both free, static).
-- **No backend, no database, no accounts, no secrets.** v1 is fully static.
+- **No backend, no database, no accounts, no secrets.** v1 is fully static. Audit checklist ticks and "marked as done" projects are saved client-side in the browser's localStorage, keyed by project slug, not on a server, so this stays true.
 - Add an appropriate `.gitignore` for the chosen stack. Never commit secrets or large build artifacts.
 
 ---
@@ -71,9 +71,9 @@ Home
 
 ## 6. Scope
 
-- **v1 (build now):** Home, About, Domains, all 12 project pages.
+- **v1 (build now):** Home, About, Domains, all 12 project pages, and browser-saved progress (audit checklist ticks and projects marked done, stored in localStorage, keyed by project slug).
 - **Fast-follow (next, content not ready yet):** Study Prompts library.
-- **Later / v2 (not now):** the Recruiting Timeline (deferred, not dropped; full spec kept in sections 9 and 10 for when it's built), a data-analyst project track (Power BI etc.), and anything dynamic (saved progress, accounts, ticking off checklist items). The site stays static for now.
+- **Later / v2 (not now):** the Recruiting Timeline (deferred, not dropped; full spec kept in sections 9 and 10 for when it's built), a data-analyst project track (Power BI etc.), and accounts with progress synced across devices. The site stays static for now; browser-saved progress does not need a backend.
 
 ---
 
