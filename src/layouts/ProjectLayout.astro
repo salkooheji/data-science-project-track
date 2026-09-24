@@ -20,7 +20,7 @@ const choosingHeading = project.choosingYourDataHeading ?? 'Choosing your data';
 const checklistCount = project.auditChecklist?.length ?? 0;
 
 const AI_MODEL_NOTE =
-  "Use the strongest AI model you have access to. Claude, ChatGPT and Gemini all work. Paid tiers or thinking modes explain better and make fewer mistakes on long projects. If code gives an error, paste the full error back and ask it to explain the fix.";
+  "Use a paid plan and the strongest model you have access to (Claude, ChatGPT or Gemini). These projects are long, and free tiers usually hit their limits partway and make more mistakes. If you're on a free plan, expect to work across several chats: use the summary the prompt gives you at the end of each session to pick up where you left off. If code gives an error, paste the full error back and ask it to explain the fix.";
 ---
 
 <BaseLayout
@@ -177,7 +177,7 @@ const AI_MODEL_NOTE =
             <span class="nav-title">{prevEntry.data.title}</span>
           </a>
         ) : (
-          <span class="nav-link disabled" />
+          <span class="nav-spacer" aria-hidden="true" />
         )
       }
       {
@@ -187,7 +187,7 @@ const AI_MODEL_NOTE =
             <span class="nav-title">{nextEntry.data.title}</span>
           </a>
         ) : (
-          <span class="nav-link disabled" />
+          <span class="nav-spacer" aria-hidden="true" />
         )
       }
     </nav>
@@ -521,9 +521,8 @@ const AI_MODEL_NOTE =
     text-align: right;
     align-items: flex-end;
   }
-  .nav-link.disabled {
+  .nav-spacer {
     flex: 1;
-    border: none;
   }
   .nav-label {
     font-family: var(--font-mono);
