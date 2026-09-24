@@ -2,19 +2,52 @@
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
-const firstProject = projects.find((p) => p.data.order === 1);
+const sorted = [...projects].sort((a, b) => a.data.order - b.data.order);
+const firstProject = sorted[0];
+const isProjectPage = Astro.url.pathname.startsWith('/projects/');
+const projectList = sorted.map((p) => ({ slug: p.id, order: p.data.order }));
 ---
 
-<footer class="site-footer">
+<footer class="site-footer" data-footer data-projects={JSON.stringify(projectList)}>
   <span class="site-name">projecttrack.dev</span>
   {
-    firstProject && (
-      <a href={`/projects/${firstProject.id}/`} class="cta">
-        Begin with project 01 &rarr;
+    isProjectPage ? (
+      <a href="/#roadmap" class="cta">
+        Back to the roadmap &rarr;
       </a>
+    ) : (
+      firstProject && (
+        <a href={`/projects/${firstProject.id}/`} class="cta" data-continue-link>
+          Begin with project 01 &rarr;
+        </a>
+      )
     )
   }
 </footer>
+
+<script>
+  import { isProjectDone } from '../lib/progress';
+
+  const footer = document.querySelector<HTMLElement>('[data-footer]');
+  const link = document.querySelector<HTMLAnchorElement>('[data-continue-link]');
+  if (footer && link) {
+    let projectList: { slug: string; order: number }[] = [];
+    try {
+      projectList = JSON.parse(footer.dataset.projects ?? '[]');
+    } catch {
+      projectList = [];
+    }
+
+    const next = projectList.find((p) => !isProjectDone(p.slug));
+    if (next) {
+      link.href = `/projects/${next.slug}/`;
+      link.textContent = `Continue with project ${String(next.order).padStart(2, '0')} →`;
+    } else if (projectList[0]) {
+      link.href = `/projects/${projectList[0].slug}/`;
+      link.textContent = 'Begin with project 01 →';
+    }
+  }
+</script>
 
 <style>
   .site-footer {
